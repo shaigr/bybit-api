@@ -146,6 +146,23 @@ export default abstract class BaseRestClient {
       this.syncTime();
       setInterval(this.syncTime.bind(this), +this.options.sync_interval_ms!);
     }
+
+    if (this.options.proxy_host) {
+      axios.interceptors.request.use(config => {
+        // Check if requested URL starts with 'balboa.com/v1/'
+        if (config.url?.startsWith(this.options.proxy_url_prefix!)) {
+          config.proxy = {
+            host: this.options.proxy_host!,
+            port: this.options.proxy_port!,
+            auth: {
+              username: this.options.proxy_user!,
+              password: this.options.proxy_pass!
+            }
+          };
+        }
+        return config;
+      });
+    }    
   }
 
   private isSpotV1Client() {

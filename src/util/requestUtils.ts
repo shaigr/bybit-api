@@ -43,6 +43,18 @@ export interface RestClientOptions {
 
   /** Default: true. whether to try and post-process request exceptions. */
   parse_exceptions?: boolean;
+
+  proxy_host?: string;
+
+  proxy_port?: number;
+
+  proxy_user?: string;
+
+  proxy_pass?: string;
+
+ /** Default: the prefix of the destination url for to pass to the proxy, 
+  * for example if set to https://blabla.com/v1/ then a request like https://blabla.com/v1/order will be passed through the proxy*/
+  proxy_url_prefix?: string;
 }
 
 /**
