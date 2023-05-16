@@ -17,14 +17,14 @@ const ENABLE_HTTP_TRACE =
   process.env.BYBITTRACE;
 
 if (ENABLE_HTTP_TRACE) {
-  // axios.interceptors.request.use((request) => {
-  //   console.log(
-  //     new Date(),
-  //     'Starting Request',
-  //     JSON.stringify(request, null, 2)
-  //   );
-  //   return request;
-  // });
+   axios.interceptors.request.use((request) => {
+     console.log(
+       new Date(),
+       'Starting Request',
+       JSON.stringify(request, null, 2)
+     );
+     return request;
+   });
   axios.interceptors.response.use((response) => {
     console.log(new Date(), 'Response:', {
       request: {
